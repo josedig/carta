@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta para patty</title>
+  <link rel="icon" href="https://cdn.pixabay.com/photo/2023/08/29/16/17/pooh-8221704_1280.png">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FAD749;
+    }
+    .screen {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .active {
+      display: flex;
+    }
+    .password-screen {
+      flex-direction: column;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .key {
+      background-color: #EF7F01;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .key:hover {
+      background-color: #F52532;
+    }
+    .input-display {
+      font-size: 24px;
+      margin-top: 20px;
+      letter-spacing: 8px;
+    }
+    .notepad {
+      background-color: #fff0f6;
+      border: 3px solid #000;
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 300px;
+      text-align: left;
+      font-family: 'Arial', cursive, sans-serif;
+      line-height: 0.85;
+    }
+    .notepad h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="passwordScreen" class="screen password-screen active">
+  <h2>🔒 Ingresa la Contraseña</h2>
+  <div class="input-display" id="inputDisplay">••••</div>
+  <div class="keypad">
+    <button class="key" onclick="enterDigit('1')">1</button>
+    <button class="key" onclick="enterDigit('2')">2</button>
+    <button class="key" onclick="enterDigit('3')">3</button>
+    <button class="key" onclick="enterDigit('4')">4</button>
+    <button class="key" onclick="enterDigit('5')">5</button>
+    <button class="key" onclick="enterDigit('6')">6</button>
+    <button class="key" onclick="enterDigit('7')">7</button>
+    <button class="key" onclick="enterDigit('9')">9</button>
+    <button class="key" onclick="enterDigit('8')">8</button>
+    <div></div>
+    <button class="key" onclick="enterDigit('0')">0</button>
+    <div></div>
+  </div>
+</div>
+<div id="notepadScreen" class="screen">
+  <div class="notepad">
+    <h3>📅 5 noviembre 2025 </h3>
+    <h4> Carta para patty </h4>
+    <p>
+      Ese día q te dije que me gustabas, mentí, todavía me gustas. Se que no hay que mezclar las cosas, tú eres mi jefa, yo soy tu empleado. Las cosas han cambiado, tú cambiaste, yo también (para bien). Eso no quita el hecho de lo mucho que te quiero, mi única forma de demostrártelo es ayudándote hasta en la cosa más mínima, no porque te considere débil, al contrario, sé que eres una persona fuerte, por lo cual te respeto y te admiro mucho; lo hago para demostrarte con acciones lo que no puedo con palabras. También al ayudarte me acerco a ti, estar a tu lado se siente increíble, eres una persona con muy buenas vibras, pura y energética, hablas demasiado, lo cual me gusta mucho, podría escucharte por horas y no aburrirme.
+    </p>
+    <p>
+      Se q no soy perfecto, admito q no soy el muchacho bueno q esperabas, tengo mucho q aprender, cometí errores y pido perdón por eso, prometo tratar de mejorar mis errores. El punto es q te considero una persona muy importante para mi, eres una persona de la cual aprendí muchas cosas, no quiero perderte, quiero q confíes en mí, si es necesario, volverme a ganar tu confianza, no me importa cuánto me tome o qué tanto me cueste. Se leerá ridículo, pero extraño esos momentos donde estábamos juntos y me llamabas joche (no me gustaba el apodo, aclaro). Me sentía querido por ti, lo cual me hacía sentir bien. Tu representas para mí más de lo que crees. 
+    </p>
+    <p>
+      Prometo respetarte a ti y a las reglas que impongan, ya sea respetar la cadena de mando, para no romper la jerarquía. Pero también prometo cuidarte y siempre tener un ojo en ti. Cierro con dos frases de winnie - pooh que te pueden gustar: "A veces las cosas más pequeñas ocupan el mayor espacio en tu corazón". "La mejor parte de cualquier día es cuando tú y yo nos convertimos en NOSOTROS".
+    </p>
+    <p>
+     Pd: perdón por la nota tan dramática, pero quería que supieras esto jeje.
+    </p>
+  </div>
+</div>
+<script>
+  const correctPassword = '7143';
+  let input = '';
+  function enterDigit(digit) {
+    if (input.length < 4) {
+      input += digit;
+    }
+    const display = document.getElementById('inputDisplay');
+    display.textContent = input.padEnd(4, '•');
+    if (input.length === 4) {
+      if (input === correctPassword) {
+        document.getElementById('passwordScreen').classList.remove('active');
+        document.getElementById('notepadScreen').classList.add('active');
+      } else {
+        alert('Contraseña incorecta, intenta de nuevo');
+        input = '';
+        display.textContent = '••••';
+      }
+    }
+  }
+</script>
+</body>
+</html>
